@@ -64,10 +64,10 @@
                 </div>
                 <div class="d-flex align-items-center">
                     {% if current_user.is_authenticated %}
-                    <a href="{{ url_for('base_blueprint.logout') }}" class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-out-alt me-2"></span> Logout</a>
+                    <a href="{{ url_for('base_blueprint.logout') }}" class="btn btn-outline-gray-100 me-md-3"><span class="fas fa-sign-out-alt me-2"></span> Logout</a>
                     {% else %}
-                    <a href="{{ url_for('base_blueprint.login') }}" class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-in-alt me-2"></span> Login</a>
-                    <a href="{{ url_for('base_blueprint.register') }}" class="btn btn-outline-gray-100 d-none d-lg-inline me-md-3"><span class="fas fa-sign-in-alt me-2"></span> Register</a>
+                    <a href="{{ url_for('base_blueprint.login') }}" class="btn btn-outline-gray-100 me-1 me-md-3 "><span class="fas fa-sign-in-alt me-2"></span> Login</a>
+                    <a href="{{ url_for('base_blueprint.register') }}" class="btn btn-outline-gray-100 me-md-3"><span class="fas fa-sign-in-alt me-2"></span> Register</a>
                     {% endif %}
                     <button class="navbar-toggler ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
