@@ -13,9 +13,10 @@ from werkzeug.exceptions import HTTPException, NotFound, abort
 from jinja2              import TemplateNotFound
 
 # App modules
-from app        import app, lm, db, bc
-from app.models import User
-from app.forms  import LoginForm, RegisterForm
+from app.base        import blueprint
+from app             import lm, bc
+from app.base.models import User
+from app.base.forms  import LoginForm, RegisterForm
 
 # provide login manager with load_user callback
 @lm.user_loader
@@ -23,13 +24,13 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 # Logout user
-@app.route('/logout.html')
+@blueprint.route('/logout.html')
 def logout():
     logout_user()
     return redirect(url_for('home_blueprint.index'))
 
 # Register a new user
-@app.route('/register.html', methods=['GET', 'POST'])
+@blueprint.route('/register.html', methods=['GET', 'POST'])
 def register():
     
     # declare the Registration Form
@@ -67,7 +68,7 @@ def register():
 
             user.save()
 
-            msg     = 'User created, please <a href="' + url_for('base_bleprint.login') + '">login</a>'     
+            msg     = 'User created, please <a href="' + url_for('base_blueprint.login') + '">login</a>'     
             success = True
 
     else:
@@ -76,7 +77,7 @@ def register():
     return render_template( 'accounts/register.html', form=form, msg=msg, success=success )
 
 # Authenticate user
-@app.route('/login.html', methods=['GET', 'POST'])
+@blueprint.route('/login.html', methods=['GET', 'POST'])
 def login():
     
     # Declare the login form
@@ -106,30 +107,3 @@ def login():
             msg = "Unknown user"
 
     return render_template( 'accounts/login.html', form=form, msg=msg )
-
-# App main route + generic routing
-@app.route('/', defaults={'path': 'index.html'})
-@app.route('/<path>')
-def index(path):
-
-    if not current_user.is_authenticated:
-        return redirect(url_for('base_blueprint.login'))
-
-    try:
-
-        if not path.endswith( '.html' ):
-            path += '.html'
-
-        # Serve the file (if exists) from app/templates/FILE.html
-        return render_template( path )
-    
-    except TemplateNotFound:
-        return render_template('page-404.html'), 404
-    
-    except:
-        return render_template('page-500.html'), 500
-
-# Return sitemap
-@app.route('/sitemap.xml')
-def sitemap():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'sitemap.xml')

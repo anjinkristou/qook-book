@@ -10,3 +10,4 @@ python-decouple
 gunicorn
 jinja2
 psycopg2
+flask-migrate

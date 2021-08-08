@@ -1,6 +1,6 @@
 {% extends "layouts/base-fullscreen.html" %}
 
-{% block title %} Sign UP {% endblock %} 
+{% block title %} Sign IN {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
@@ -19,7 +19,7 @@
                         <div class="signin-inner my-4 my-lg-0 bg-white shadow-soft border rounded border-gray-300 p-4 p-lg-5 w-100 fmxw-500">
                             <div class="text-center text-md-center mb-4 mt-md-0">
                                 <h1 class="mb-0 h3">
-                                    <a href="https://appseed.us/apps/flask-apps/flask-pixel-bootstrap-uikit" target="_blank">Flask Pixel UI</a> - Register
+                                    QookBook - Login
                                 </h1>
                                 <br />
                                 <span class="font-weight-normal">
@@ -30,23 +30,16 @@
                                     {% endif %}                                  
                                 </span>
                             </div>
-                            <form method="post" action="" action="#">
+                            <form method="post" action="" class="mt-4">
 
                                 {{ form.hidden_tag() }}
 
+                                <!-- Form -->
                                 <div class="form-group mb-4">
                                     <label for="email">Username</label>
                                     <div class="input-group">
                                         <span class="input-group-text" id="basic-addon1"><span class="fas fa-user"></span></span>
                                         {{ form.username(class="form-control") }}
-                                    </div>  
-                                </div>
-                                <!-- Form -->
-                                <div class="form-group mb-4">
-                                    <label for="email">Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon3"><span class="fas fa-envelope"></span></span>
-                                        {{ form.email(class="form-control", type="email") }}
                                     </div>  
                                 </div>
                                 <!-- End of Form -->
@@ -55,7 +48,7 @@
                                     <div class="form-group mb-4">
                                         <label for="password">Password</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon4"><span class="fas fa-unlock-alt"></span></span>
+                                            <span class="input-group-text" id="basic-addon2"><span class="fas fa-unlock-alt"></span></span>
                                             {{ form.password(class="form-control", type="password") }}
                                         </div>  
                                     </div>
@@ -64,27 +57,24 @@
                                         <div class="form-check mb-0">
                                             <input class="form-check-input" type="checkbox" value="" id="remember">
                                             <label class="form-check-label mb-0" for="remember">
-                                              Agree <a class="fw-bold text-underline" href="#">Terms</a>
+                                              Remember me
                                             </label>
                                         </div>
-                                        <div><a href="{{ url_for('login') }}" class="text-right">Login</a></div>
+                                        <div><a href="{{ url_for('base_blueprint.register') }}" class="text-right">Register</a></div>
                                     </div>
                                 </div>
                                 <div class="d-grid">
-                                    <button type="submit" name="register" class="btn btn-primary">Sign UP</button>
+                                    <button type="submit" name="login" class="btn btn-primary">Sign in</button>
                                 </div>
                             </form>
-                            
+
                             <br />
 
                             <div class="d-flex justify-content-center align-items-center mt-4">
                                 <span class="fw-normal">
-                                    &copy; Themesberg - coded by 
-                                    <a href="https://appseed.us" target="_blank"
-                                       class="fw-bold text-underline">AppSeed</a>
+                                    &copy; Mehrez Kristou
                                 </span>
                             </div>
-
                         </div>
                     </div>
                 </div>

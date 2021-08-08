@@ -4,29 +4,48 @@ Copyright (c) 2019 - present AppSeed.us
 """
 
 import os
+from importlib          import import_module
 
-from flask            import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_login      import LoginManager
-from flask_bcrypt     import Bcrypt
+from flask              import Flask
+from flask_sqlalchemy   import SQLAlchemy
+from flask_login        import LoginManager
+from flask_bcrypt       import Bcrypt
+from flask_migrate      import Migrate
 
 # Grabs the folder where the script runs.
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-app = Flask(__name__)
+db = SQLAlchemy  () # flask-sqlalchemy
+bc = Bcrypt      () # flask-bcrypt
+lm = LoginManager() # flask-loginmanager
+mg = Migrate(db)  # flask-migrate
 
-app.config.from_object('app.config.Config')
 
-db = SQLAlchemy  (app) # flask-sqlalchemy
-bc = Bcrypt      (app) # flask-bcrypt
+def register_extensions(app):
+    db.init_app(app)
+    bc.init_app(app)
+    lm.init_app(app)
+    mg.init_app(app)
 
-lm = LoginManager(   ) # flask-loginmanager
-lm.init_app(app)       # init the login manager
+def register_blueprints(app):
+    for module_name in ('base', 'home'):
+        module = import_module('app.{}.routes'.format(module_name))
+        app.register_blueprint(module.blueprint)
 
-# Setup database
-@app.before_first_request
-def initialize_database():
-    db.create_all()
+def configure_database(app):
 
-# Import routing, models and Start the App
-from app import views, models
+    @app.before_first_request
+    def initialize_database():
+        db.create_all()
+
+    @app.teardown_request
+    def shutdown_session(exception=None):
+        db.session.remove()
+
+def create_app(config):
+    app = Flask(__name__, static_folder='base/static')
+    app.config.from_object(config)
+    register_extensions(app)
+    register_blueprints(app)
+    configure_database(app)
+    return app
