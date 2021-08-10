@@ -1,21 +1,25 @@
 {
-    "name": "flask-pixel-lite",
-    "mastertemplate": "boilerplate-code-flask",
-    "version": "1.0.4",
-    "description": "Template project - Flask Boilerplate Code",
-    "scripts": {},
+    "name": "qook-book",
+    "version": "0.0.1",
+    "description": "The Cook Book thaught by Qattous",
+    "scripts": {
+        "start": "parcel ./app/templates/index.html",
+        "build": "parcel build ./app/templates/index.html"
+    },
     "repository": {
         "type": "git",
-        "url": "https://github.com/app-generator/flask-pixel-lite"
+        "url": "https://github.com/anjinkristou/qook-book"
     },
     "bugs": {
-        "url": "https://github.com/app-generator/flask-pixel-lite/issues",
-        "email": "support@appseed.us"
+        "url": "https://github.com/anjinkristou/qook-book/issues",
+        "email": "mehrez@kristou.com"
     },
-    "author": "AppSeed App Generator <support@appseed.us> (https://appseed.us)",
-    "engines": {
-        "node": ">=10.0.0"
-    },
-    "dependencies": {},
-    "devDependencies": {}
+    "author": "Mehrez Kristou <mehrez@kristou.com>",
+    "devDependencies": {
+        "bootstrap": "^5.1.0",
+        "jquery": "^3.6.0",
+        "parcel-bundler": "^1.12.5",
+        "popper.js": "^1.16.1",
+        "sass": "^1.37.5"
+    }
 }

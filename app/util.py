@@ -1,7 +1,4 @@
 # -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
 
 from flask   import json, url_for, jsonify, render_template
 from jinja2  import TemplateNotFound

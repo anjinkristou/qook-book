@@ -1,7 +1,4 @@
 # -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
 
 import os
 from importlib          import import_module
@@ -18,7 +15,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 db = SQLAlchemy  () # flask-sqlalchemy
 bc = Bcrypt      () # flask-bcrypt
 lm = LoginManager() # flask-loginmanager
-mg = Migrate(db)  # flask-migrate
+mg = Migrate(db=db, render_as_batch=True)    # flask-migrate
 
 
 def register_extensions(app):
@@ -28,7 +25,7 @@ def register_extensions(app):
     mg.init_app(app)
 
 def register_blueprints(app):
-    for module_name in ('base', 'home'):
+    for module_name in ('auth', 'home', 'recipe'):
         module = import_module('app.{}.routes'.format(module_name))
         app.register_blueprint(module.blueprint)
 
@@ -43,7 +40,7 @@ def configure_database(app):
         db.session.remove()
 
 def create_app(config):
-    app = Flask(__name__, static_folder='base/static')
+    app = Flask(__name__)
     app.config.from_object(config)
     register_extensions(app)
     register_blueprints(app)

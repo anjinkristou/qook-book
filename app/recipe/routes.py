@@ -10,9 +10,10 @@ from werkzeug.exceptions import HTTPException, NotFound, abort
 from jinja2              import TemplateNotFound
 
 # App modules
-from app        import app, lm, db, bc
+from app.recipe        import blueprint
 
-# Return sitemap
-@app.route('/sitemap.xml')
-def sitemap():
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'sitemap.xml')
+# App main route + generic routing
+@blueprint.route('/')
+def index():
+    return render_template('recipe_index.html')
+

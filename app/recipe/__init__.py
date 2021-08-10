@@ -3,9 +3,9 @@
 from flask import Blueprint
 
 blueprint = Blueprint(
-    'home_blueprint',
+    'recipe_blueprint',
     __name__,
-    url_prefix='',
+    url_prefix='/recipe',
     template_folder='templates',
     static_folder='static'
 )
