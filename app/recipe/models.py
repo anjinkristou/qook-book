@@ -8,7 +8,7 @@ class Recipe(CRUDMixin, db.Model):
 
     id          = db.Column(db.Integer,     primary_key=True)
     name        = db.Column(db.Unicode(64))
-    details     = db.Column(db.Text(5000))
+    details     = db.Column(db.Text)
     image_url   = db.Column(db.String(255))
     servings    = db.Column(db.Integer)
     difficulty  = db.Column(db.Integer)

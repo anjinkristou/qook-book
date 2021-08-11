@@ -28,7 +28,7 @@ def upgrade():
     op.create_table('recipe',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.Unicode(length=64), nullable=True),
-    sa.Column('details', sa.Text(length=5000), nullable=True),
+    sa.Column('details', sa.Text(), nullable=True),
     sa.Column('image_url', sa.String(length=255), nullable=True),
     sa.Column('servings', sa.Integer(), nullable=True),
     sa.Column('difficulty', sa.Integer(), nullable=True),
