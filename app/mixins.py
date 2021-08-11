@@ -8,10 +8,8 @@ class CRUDMixin(object):
         instance = cls(**kwargs)
         return instance.save()
 
-    def update(self, commit=True, **kwargs):
-        for attr, value in kwargs.iteritems():
-            setattr(self, attr, value)
-        return commit and self.save() or self
+    def update(self):
+        db.session.commit()
 
     def save(self, commit=True):
         db.session.add(self)

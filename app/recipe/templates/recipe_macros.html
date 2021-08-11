@@ -1,0 +1,33 @@
+{# -------------- product_property_field ------------------ #}
+{%- macro recipe_ingredient_field(subform, index) %}
+    <div id="ingredients-{{ index }}-form" class="input-group has-validation my-2 {% if index != '_' %}subform{% else %}d-none{% endif %}" data-index="{{ index }}">
+            <span class="input-group-text"><i class="bi bi-square"></i></span>
+            {{ subform.ingredient(class='form-control') }}
+            {{ subform.quantity(class='form-control', placeholder='Quantity') }}     
+
+            <a class="remove btn btn-danger" href="#"><i class="bi bi-trash"></i></a>
+
+            {% if subform.quantity.errors %}
+                {% for error in subform.quantity.errors %}
+                    <div class="invalid-feedback">* {{ error }}</div>
+                {% endfor %}
+            {% endif %}
+    </div>
+{%- endmacro %}
+
+{# -------------- product_property_field ------------------ #}
+{%- macro recipe_step_field(subform, index) %}
+    {% set stepIndex = (index | int) + 1 %}
+    <div id="steps-{{ index }}-form" class="input-group has-validation my-2 {% if index != '_' %}subform{% else %}d-none{% endif %}" data-index="{{ index }}">
+            <span class="input-group-text">Step {{ stepIndex }}</span>
+            {{ subform.details(class='form-control', row='5') }}
+
+            <a class="remove btn btn-danger" href="#"><i class="bi bi-trash"></i></a>
+
+            {% if subform.details.errors %}
+                {% for error in subform.details.errors %}
+                    <div class="invalid-feedback">* {{ error }}</div>
+                {% endfor %}
+            {% endif %}
+    </div>
+{%- endmacro %}

@@ -8,19 +8,63 @@
 {% block content %}
 
     <main>
-        
-        
-        <!--End of Title section-->
-        <div class="section section-md">
-            <nav aria-label="breadcrumb">
+        <!-- Breadcrumb -->
+        <div class="container bg-light mt-2 mx-2">
+            <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
                 <ol class="breadcrumb breadcrumb-text-light breadcrumb-primary text-white">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item"><a href="#">Library</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Data</li>
+                    <li class="breadcrumb-item active">Recipes</li>
                 </ol>
             </nav>
         </div>
-
+        <div class="row">
+            <div class="col-12 col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                      Search
+                    </div>
+                    <div class="card-body">
+                    </div>
+                  </div>
+            </div>
+            <div class="col-12 col-md-9">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                      <span>List</span>
+                      <a class="btn btn-primary btn-sm" href="{{ url_for('recipe_blueprint.add') }}"><i class="bi bi-plus-square me-1"></i>Add</a>
+                    </div>
+                    <div class="card-body">
+                        {% if recipes %}
+                        {% for recipe in recipes %}
+                        <div class="card mb-3">
+                            <div class="row g-0">
+                              <div class="col-lg-4 text-center">
+                                {% if recipe.image_url %}
+                                <img src="{{ recipe.image_url }}" class="img-fluid rounded-start" alt="Image">
+                                {% else %}
+                                <img src="{{ url_for('static', filename='img/no-image-placeholder.svg') }}" class="img-fluid rounded-start" alt="Image">
+                                {% endif %}
+                              </div>
+                              <div class="col-lg-8">
+                                <div class="card-body">
+                                  <h5 class="card-title">{{ recipe.name }}</h5>
+                                  <p class="card-text">{{ recipe.details }}</p>
+                                  <p class="card-text">
+                                    <span>Servings : </span><span class="badge rounded-pill bg-primary"><i class="fas fa-utensils me-1"></i>{{ recipe.servings }}</span>
+                                    <span>Difficulty: </span><span class="badge bg-primary">{{ {0: "Easy", 1: "Normal", 2: "Difficult"}[recipe.difficulty] | default("") }}</span>
+                                  </p>
+                                  <a href="{{ url_for('recipe_blueprint.edit', id=recipe.id) }}" class="stretched-link">Check this</a>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        {% endfor %}
+                        {% else %}
+                        <h5 class="text-muted">No recipe</h5>
+                        {% endif %}
+                    </div>
+                  </div>
+            </div>
+        </div>
         
 
     </main>

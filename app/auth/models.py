@@ -11,6 +11,9 @@ class User(UserMixin, CRUDMixin, db.Model):
     email    = db.Column(db.String(120), unique = True)
     password = db.Column(db.String(500))
 
+    # Relationships
+    recipes = db.relationship('Recipe', back_populates='user')
+
     def __init__(self, user, email, password):
         self.user       = user
         self.password   = password

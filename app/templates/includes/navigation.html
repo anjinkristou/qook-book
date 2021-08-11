@@ -1,22 +1,11 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
     <div class="container-fluid">
-        <button class="btn" id="sidebarToggle"><i class="bi bi-list"></i></button>
+        <button class="btn d-md-none" id="sidebarToggle"><i class="bi bi-list"></i></button>
         <a class="navbar-brand" href="#">QookBook</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                {% if current_user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('auth_blueprint.logout') }}">Sign out</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('auth_blueprint.login') }}">Sign in</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('auth_blueprint.register') }}">Sign up</a>
-                </li>
-                {% endif %}
+
             </ul>
         </div>
     </div>

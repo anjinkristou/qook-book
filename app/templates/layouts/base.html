@@ -15,6 +15,7 @@
 
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
 
@@ -29,17 +30,25 @@
       {% include 'includes/sidebar.html' %}
 
       <!-- Page content wrapper-->
-      <div id="page-content-wrapper">
+      <div class="w-100">
         <!-- Top navigation-->
         {% include 'includes/navigation.html' %}
 
         <!-- Page content-->
         <div class="container-fluid">
           {% block content %}{% endblock content %}
-        <div class="container-fluid">
+        </div>
+          
+        <!-- Footer-->
+        {% include 'includes/footer.html' %}
 
-      </div>
     </div>
+
+    <!-- Modal dialogs -->
+    {% block modals %}{% endblock modals %}
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <!-- Optional JavaScript; choose one of the two! -->
 
@@ -51,6 +60,8 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
     -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js" integrity="sha512-Tn2m0TIpgVyTzzvmxLNuqbSJH3JP8jm+Cy3hvHrW7ndTDcJ1w5mBiksqDBb8GpE2ksktFvDB/ykZ0mDpsZj20w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 
