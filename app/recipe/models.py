@@ -62,7 +62,7 @@ class RecipeIngredient(CRUDMixin, db.Model):
 class RecipeStep(CRUDMixin, db.Model):
     
     id          = db.Column(db.Integer,     primary_key=True)
-    details = db.Column(db.Text(5000))
+    details = db.Column(db.Text)
     
     # Foreign keys
     recipe_id   = db.Column(db.Integer, db.ForeignKey(Recipe.id))
